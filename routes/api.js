@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
-
+const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const db = "mongodb://normpoc:normpoc1@ds139690.mlab.com:39690/achievesdb"
 mongoose.connect(db, err => {
@@ -22,8 +22,10 @@ router.post('/register', (req,res) =>{
     user.save((error, registeredUser) =>{
         if(error){
             console.log(error)
-        } else{
-            res.status(200).send(registeredUser)
+        } else {
+            let payload = {subject: registeredUser._id}
+            let token = jwt.sign(payload, 'secretKey')
+            res.status(200).send({token})
         }
 
     })
@@ -42,7 +44,9 @@ router.post('/login', (req, res) =>{
             if(user.password !== userData.password){
                 res.status(401).send('Invalid password')
             } else{
-                res.status(200).send(user)
+                let payload = { subject: user._id}
+                let token = jwt.sign(payload, 'secretKey')
+                res.status(200).send({token})
             }
         }
     })
