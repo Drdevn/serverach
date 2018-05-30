@@ -23,7 +23,7 @@ router.post('/register', (req,res) =>{
         if(error){
             console.log(error)
         } else {
-            let payload = {subject: registeredUser._id}
+            let payload = {subject: registeredUser.id}
             let token = jwt.sign(payload, 'secretKey')
             res.status(200).send({token})
         }
@@ -44,7 +44,7 @@ router.post('/login', (req, res) =>{
             if(user.password !== userData.password){
                 res.status(401).send('Invalid password')
             } else{
-                let payload = { subject: user._id}
+                let payload = { subject: user.id}
                 let token = jwt.sign(payload, 'secretKey')
                 res.status(200).send({token})
             }
