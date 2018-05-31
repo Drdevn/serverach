@@ -6,6 +6,6 @@
      password: String,
      username: String,
      counter: Number,
-     icons: String
+     icon: String
  })
  module.exports = mongoose.model('user', userSchema, 'users')
