@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const Achieve = require('../models/achieve')
+const Icon = require('../models/icons')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const db = "mongodb://normpoc:normpoc1@ds139690.mlab.com:39690/achievesdb"
@@ -31,6 +32,21 @@ mongoose.connect(db, err => {
 router.get('/', (req, res)=>{
     res.send('From API')
 })
+router.get('/icons',(req, res) => {
+    Icon.find({})
+    .exec((err, icons) =>{
+        if(err){
+            console.log(error)
+        } else {
+            res.json(icons)
+        }
+    })
+})
+// app.get('/', function(req, res){
+//     Test.find({},function(err, docs){
+//             res.send({docs:docs});
+//     });
+// });
 router.post('/addach', (req,res) =>{
     let achData = req.body
     let achieve = new Achieve(achData)

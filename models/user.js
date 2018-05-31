@@ -5,6 +5,7 @@
      email: String,
      password: String,
      username: String,
-     counter: Number
+     counter: Number,
+     icons: String
  })
  module.exports = mongoose.model('user', userSchema, 'users')
