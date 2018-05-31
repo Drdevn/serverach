@@ -6,6 +6,12 @@
      password: String,
      username: String,
      counter: Number,
-     icon: String
+     icon: String,
+     achievenew: String,
+     achievetaken: String,
+     achievedone: String,
+     group: String,
+     date: String
+
  })
  module.exports = mongoose.model('user', userSchema, 'users')
