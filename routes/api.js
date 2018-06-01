@@ -6,6 +6,7 @@ const Icon = require('../models/icons')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const db = "mongodb://normpoc:normpoc1@ds139690.mlab.com:39690/achievesdb"
+const jwtDecode = require('jwt-decode');
 mongoose.connect(db, err => {
     if(err){
         console.error('Error!' + err)
@@ -39,6 +40,26 @@ router.get('/icons',(req, res) => {
             console.log(error)
         } else {
             res.json(icons)
+        }
+    })
+})
+router.get('/user',(req, res) => {
+    User.find({})
+    .exec((err, users) =>{
+        if(err){
+            console.log(error)
+        } else {
+            res.json(users)
+        }
+    })
+})
+router.get('/ach', (req, res)=>{
+    Achieve.find({})
+    .exec((err, achs)=>{
+        if(err){
+            console.log(error)
+        } else{
+            res.json(achs)
         }
     })
 })
@@ -93,5 +114,23 @@ router.post('/login', (req, res) =>{
         }
     })
 })
+
+router.put('/update/:id', (req, res)=>{
+    console.log(req.body)
+    User.findByIdAndUpdate(req.params.id, req.body
+
+            ,{
+                new: true
+            },
+            (err,  updatedUser)=>{
+                if(err){
+                  res.send("Error")
+                    
+                } else{
+                 res.send(updatedUser)
+                    console.log(req)
+                }
+            }
+)})
 
 module.exports = router
