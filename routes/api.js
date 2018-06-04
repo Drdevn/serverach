@@ -43,16 +43,16 @@ router.get('/icons',(req, res) => {
         }
     })
 })
-router.get('/user',(req, res) => {
-    User.find({})
-    .exec((err, users) =>{
-        if(err){
-            console.log(error)
-        } else {
-            res.json(users)
-        }
+router.get('/user/:id',(req, res) => {
+    User.findById(req.params.id)
+    .then(users => {
+        if(!users) { return res.status(404).end(); }
+        console.log(req)
+        return res.status(200).json(users);
     })
+    .catch(err => console.log(err) );
 })
+
 router.get('/ach', (req, res)=>{
     Achieve.find({})
     .exec((err, achs)=>{
