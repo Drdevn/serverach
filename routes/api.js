@@ -3,6 +3,7 @@ const router = express.Router()
 const User = require('../models/user')
 const Achieve = require('../models/achieve')
 const Icon = require('../models/icons')
+const Group = require('../models/groups')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const db = "mongodb://normpoc:normpoc1@ds139690.mlab.com:39690/achievesdb"
@@ -46,9 +47,7 @@ router.get('/icons', (req, res) => {
 router.get('/user/:id', (req, res) => {
     User.findById(req.params.id)
     .then(users => {
-    if(
-!users
-)
+    if(!users)
 {
     return res.status(404).end();
 }
@@ -56,9 +55,18 @@ console.log(req)
 return res.status(200).json(users);
 })
 .
-catch(err => console.log(err)
-)
-;
+catch(err => console.log(err));
+})
+
+router.get('/group/:id', (req, res) => {
+    Group.findById(req.params.id)
+        .then(groups => {
+            if(!groups){
+                return res.status(404).end();
+            }
+            return res.status(200).json(groups)
+        })
+        .catch(err => console.log(err));
 })
 
 router.get('/ach', (req, res) => {
@@ -71,6 +79,7 @@ router.get('/ach', (req, res) => {
 }
 })
 })
+
 // app.get('/', function(req, res){
 //     Test.find({},function(err, docs){
 //             res.send({docs:docs});
@@ -87,6 +96,19 @@ router.post('/addach', (req, res) => {
 }
 })
 })
+
+router.post('/addgroup', (req, res) => {
+    let groupData = req.body
+    let group = new Group(groupData)
+    group.save((error, registeredGroup) => {
+        if(error) {
+            console.log(error)
+        } else{
+            res.status(200).send(registeredGroup)
+        }
+    })
+})
+
 router.post('/register', (req, res) => {
     let userData = req.body
     let user = new User(userData)
@@ -144,6 +166,21 @@ User.findByIdAndUpdate(req.params.id, req.body
 }
 }
 )
+})
+
+router.put('/join/:id', (req, res) => {
+    Group.findByIdAndUpdate(req.params.id, req.body,
+        {
+            new:true
+        },
+        (err, joinGroup) => {
+        if(err) {
+            res.send("error")
+        } else {
+            res.send(joinGroup)
+        }
+        }
+    )
 })
 
 module.exports = router
