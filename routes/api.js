@@ -109,6 +109,18 @@ router.post('/addgroup', (req, res) => {
     })
 })
 
+// router.post('/joingroup/:id', (req, res) =>{
+//     let userId = req.params.id
+//     let group = new Group(userId)
+//     group.save((error, joinedUser) => {
+//         if(error) {
+//             console.log(error)
+//         } else {
+//             res.status(200).send(joinedUser)
+//         }
+//     })
+// })
+
 router.post('/register', (req, res) => {
     let userData = req.body
     let user = new User(userData)
