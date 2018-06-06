@@ -7,6 +7,7 @@
      username: String,
      counter: Number,
      icon: String,
+     groups : [{name:String,author:String}],
     //  achievenew: String,
     //  achievetaken: String,
     //  achievedone: String,
