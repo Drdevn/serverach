@@ -79,7 +79,7 @@ router.get('/ach', (req, res) => {
                 res.json(achs)
             }
         })
-})
+});
 
 // app.get('/', function(req, res){
 //     Test.find({},function(err, docs){
@@ -160,7 +160,7 @@ router.post('/login', (req, res) => {
 router.get('/admincon/:id', (req, res) => {
     const auth = req.body.id;
     console.log(auth);
-    Group.findOne({author: auth}, (error, group) => {
+    Group.find({}).exec((error, group) => {
         if (error) {
             console.log(error)
         } else {
