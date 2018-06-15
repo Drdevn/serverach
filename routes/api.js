@@ -45,6 +45,16 @@ router.get('/icons', (req, res) => {
     })
 });
 
+router.get('/grouplist', (req, res) => {
+  Group.find({})
+    .exec((err, groups) => {
+      if(err) {
+        console.log(error)
+      } else {
+        res.json(groups)
+      }
+    })
+});
 
 router.get('/user/:id', (req, res) => {
   User.findById(req.params.id)
@@ -135,12 +145,11 @@ router.post('/register', (req, res) => {
       let token = jwt.sign(payload, 'secretKey')
       res.status(200).send({token})
     }
-
   })
 })
 
 router.post('/login', (req, res) => {
-  let userData = req.body
+  let userData = req.body;
   User.findOne({email: userData.email}, (error, user) => {
     if (error) {
       console.log(error)
@@ -191,7 +200,7 @@ router.put('/update/:id', (req, res) => {
 })
 
 router.put('/join/:id', (req, res) => {
-  Group.findByIdAndUpdate(req.params.id, req.body,
+  Group.findByIdAndUpdate(req.params.id, req.body._id,
     {
       new: true
     },
