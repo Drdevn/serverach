@@ -1,6 +1,6 @@
- const mongoose = require('mongoose')
+ const mongoose = require('mongoose');
 
- const Schema = mongoose.Schema
+ const Schema = mongoose.Schema;
  const userSchema = new Schema({
      email: String,
      password: String,
@@ -8,11 +8,7 @@
      counter: Number,
      icon: String,
      groups : [{name:String,author:String, id:String}],
-    //  achievenew: String,
-    //  achievetaken: String,
-    //  achievedone: String,
-    //  group: String,
-    //  date: String
+     // joinedgroups : [{name:String, id: String}]
 
- })
- module.exports = mongoose.model('user', userSchema, 'users')
+ });
+ module.exports = mongoose.model('user', userSchema, 'users');
