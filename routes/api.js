@@ -80,6 +80,16 @@ router.get('/group/:id', (req, res) => {
     .catch(err => console.log(err));
 });
 
+router.get('/ach/:id', (req, res) =>{
+  Achieve.findById(req.params.id)
+    .then(achieves => {
+      if (!achieves) {
+        return res.status(404).end();
+      }
+      return res.status(200).json(achieves)
+    })
+    .catch(err => console.log(err));
+});
 
 router.get('/ach', (req, res) => {
   Achieve.find({})

@@ -8,7 +8,7 @@
      counter: Number,
      icon: String,
      groups : [{name:String,author:String, id:String}],
-     // joinedgroups : [{name:String, id: String}]
+     achieves: [{name: String, id: String}]
 
  });
  module.exports = mongoose.model('user', userSchema, 'users');

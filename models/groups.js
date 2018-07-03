@@ -6,5 +6,6 @@ const groupSchema = new Schema({
     admin: String,
     users: [String],
     author: String,
+
 });
 module.exports = mongoose.model('group', groupSchema, 'groups');
