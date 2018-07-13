@@ -57,6 +57,17 @@ router.get('/grouplist', (req, res) => {
     })
 });
 
+router.get('/getAllUsers', (req, res) => {
+  User.find({})
+    .exec((err, users) => {
+      if (err) {
+        console.log(error);
+      } else {
+        res.json(users)
+      }
+    })
+});
+
 router.get('/user/:id', (req, res) => {
   User.findById(req.params.id)
     .then(users => {
