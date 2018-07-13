@@ -11,7 +11,7 @@ const achSchema = new Schema({
     active: Boolean,
     likes: Number,
     liked: Boolean,
-    users: [{id: String, author: String}],
-    group: [{name: String, id: String}]
+    users: [{id: String}],
+    autoIndex: false
 });
 module.exports = mongoose.model('achieve', achSchema, 'achievements');
