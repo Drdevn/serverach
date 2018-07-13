@@ -114,6 +114,7 @@ router.post('/addach', (req, res) => {
     if (error) {
       console.log(error)
     } else {
+      console.log(req.body);
       res.status(200).send(registeredAchieve)
     }
   })

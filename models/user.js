@@ -7,8 +7,11 @@
      username: String,
      counter: Number,
      icon: String,
-     groups : [{name:String,author:String, id:String}],
-     achieves: [{name: String, id: String}]
+     submittedAchieves:[{achieveId: String, userId: String, isSubmitted: Boolean}],
+     subscribedAchieves: [{achieved: String, authorId: String, isSubmittd:Boolean}],
+     doneAchieves:[{doneAchieveId: String}],
+     groups: [{name:String, author:String, id:String}],
+     // achieves: [{id: String, doneId: String}]
 
  });
  module.exports = mongoose.model('user', userSchema, 'users');
