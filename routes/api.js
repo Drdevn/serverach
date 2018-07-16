@@ -132,7 +132,7 @@ router.post('/addach', (req, res) => {
 });
 
 router.post('/addgroup', (req, res) => {
-  console.log(req.body);
+  console.log(req);
   let groupData = req.body;
   let group = new Group(groupData);
   group.save((error, registeredGroup) => {
