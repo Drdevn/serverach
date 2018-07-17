@@ -8,9 +8,8 @@
      counter: Number,
      icon: String,
      subscribedAchieves: [{achieved: String, authorId: String, isSubmittd:Boolean}],
-     doneAchieves:[{doneAchieveId: String}],
+     doneAchieves:[{name: String, content: String, reward: String, data: String}],
      groups: [{name:String, author:String, id:String}],
-     // achieves: [{id: String, doneId: String}]
 
  });
  module.exports = mongoose.model('user', userSchema, 'users');
