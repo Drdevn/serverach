@@ -7,8 +7,8 @@
      username: String,
      counter: Number,
      icon: String,
-     subscribedAchieves: [{achieved: String, authorId: String, isSubmittd:Boolean}],
-     doneAchieves:[{name: String, content: String, reward: String, data: String}],
+     subscribedAchieves: [{achieved: String, authorId: String, isSubmittd:Boolean, value: String}],
+     doneAchieves:[{name: String, content: String, reward: String, data: String, value: String}],
      groups: [{name:String, author:String, id:String}],
 
  });
