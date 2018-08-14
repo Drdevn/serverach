@@ -2,14 +2,16 @@
 
  const Schema = mongoose.Schema;
  const userSchema = new Schema({
-     email: String,
-     password: String,
-     username: String,
-     counter: Number,
-     icon: String,
-     subscribedAchieves: [{achieved: String, authorId: String, isSubmittd:Boolean, value: String}],
-     doneAchieves:[{name: String, content: String, reward: String, data: String, value: String}],
-     groups: [{name:String, author:String, id:String}],
+   email: String,
+   password: String,
+   username: String,
+   counter: Number,
+   icon: String,
+   subscribedAchieves: [{id: String, isActive: Boolean}],
+   subscribers: [{id: String, isActive: Boolean}],
+   doneAchieves:[{id: String}],
+   groups: [{id: String}],
 
  });
+
  module.exports = mongoose.model('user', userSchema, 'users');
